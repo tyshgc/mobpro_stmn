@@ -1,3 +1,5 @@
+import { ZodIssueCode } from "zod"
+
 /**
  * Result Helper Class
  * 結果のステータスとコード・メッセージと生成されたインスタンス
@@ -64,7 +66,7 @@ export type ResultConstructorProps<T, F> = {
 }
 
 export type ResultStatusType = "SUCCESS" | "FAILURE"
-export type ResultCodeType = "notfound_user" | "exception"
+export type ResultCodeType = "notfound_user" | "exception" | ZodIssueCode
 export type ResultContent = {
     title: string
     detail?: string
