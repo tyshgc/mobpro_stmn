@@ -1,9 +1,28 @@
 import type { NextPage } from 'next'
+import { useState } from "react"
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Task from "../src/models/entities/Task"
 
 const Home: NextPage = () => {
+  const task = Task.factory({name: {
+    value: "買い物へ行く"
+  }})
+
+  const [taskName, setTaskName] = useState<string>(task.getName().value())
+
+  const onChangeNameTask = ()=> {
+    task.changeName("買い物へ行く買い物へ行く買い物へ行く買い物へ行く買い物へ行く買い物へ行く")
+    
+    const taskName = task.getName()
+    setTaskName(taskName.value())
+    
+    if(taskName.validation()?.status === "FAILURE") {
+      console.log(taskName.validation())
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,12 +33,11 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          { taskName }
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          <button onClick={onChangeNameTask}>タスクをつくる</button>
         </p>
 
         <div className={styles.grid}>

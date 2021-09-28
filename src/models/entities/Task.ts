@@ -13,6 +13,14 @@ export default class Task extends Entity<TaskProps> {
         return this.props.name
     }
 
+    public changeName(newName: string) {
+        const name = TaskName.factory({
+            value: newName
+        })
+
+        this.props = {...this.props, name}
+    }
+
     public static factory(props: FactoryProps) {
         
         const name = TaskName.factory({
