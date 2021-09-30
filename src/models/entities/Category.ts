@@ -9,14 +9,6 @@ export default class Category extends Entity<CategoryProps> {
     return this.props.name;
   }
 
-  public changeName(newName: string) {
-    const name = CategoryName.factory({
-      value: newName,
-    });
-
-    this.props = { ...this.props, name };
-  }
-
   public static factory(props: FactoryProps) {
     const name = CategoryName.factory({
       value: props.name.value,
