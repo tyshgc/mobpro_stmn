@@ -1,27 +1,31 @@
-import type { NextPage } from 'next'
-import { useState } from "react"
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Task from "../src/models/entities/Task"
+import type { NextPage } from 'next';
+import { useState } from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import Task from '../src/models/entities/Task';
 
 const Home: NextPage = () => {
-  const task = Task.factory({name: {
-    value: "買い物へ行く"
-  }})
+  const task = Task.factory({
+    name: {
+      value: '買い物へ行く',
+    },
+  });
 
-  const [taskName, setTaskName] = useState<string>(task.getName().value())
+  const [taskName, setTaskName] = useState<string>(task.getName().value());
 
-  const onChangeNameTask = ()=> {
-    task.changeName("買い物へ行く買い物へ行く買い物へ行く買い物へ行く買い物へ行く買い物へ行く")
-    
-    const taskName = task.getName()
-    setTaskName(taskName.value())
-    
-    if(taskName.validation()?.status === "FAILURE") {
-      console.log(taskName.validation())
+  const onChangeNameTask = () => {
+    task.changeName(
+      '買い物へ行く買い物へ行く買い物へ行く買い物へ行く買い物へ行く買い物へ行く'
+    );
+
+    const taskName = task.getName();
+    setTaskName(taskName.value());
+
+    if (taskName.validation()?.status === 'FAILURE') {
+      console.log(taskName.validation());
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -32,9 +36,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          { taskName }
-        </h1>
+        <h1 className={styles.title}>{taskName}</h1>
 
         <p className={styles.description}>
           <button onClick={onChangeNameTask}>タスクをつくる</button>
@@ -84,7 +86,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
