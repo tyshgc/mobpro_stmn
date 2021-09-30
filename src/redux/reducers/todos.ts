@@ -26,9 +26,11 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
       }
       return state;
     },
+
     [TodoActions.Type.DELETE_TODO]: (state, action) => {
       return state.filter((todo) => todo.id !== (action.payload as any));
     },
+
     [TodoActions.Type.EDIT_TODO]: (state, action) => {
       return state.map((todo) => {
         if (!todo || !action || !action.payload) {
@@ -39,6 +41,7 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
           : todo;
       });
     },
+
     [TodoActions.Type.COMPLETE_TODO]: (state, action) => {
       return state.map((todo) =>
         todo.id === (action.payload as any)
@@ -46,10 +49,12 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
           : todo
       );
     },
-    [TodoActions.Type.COMPLETE_ALL]: (state, action) => {
+
+    [TodoActions.Type.COMPLETE_ALL]: (state) => {
       return state.map((todo) => ({ ...todo, completed: true }));
     },
-    [TodoActions.Type.CLEAR_COMPLETED]: (state, action) => {
+
+    [TodoActions.Type.CLEAR_COMPLETED]: (state) => {
       return state.filter((todo) => todo.completed === false);
     },
   },
