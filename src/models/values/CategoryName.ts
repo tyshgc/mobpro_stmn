@@ -37,7 +37,7 @@ export default class CategoryName extends ValueObject<CategoryNameProps> {
 
 const valueSchema = zod
   .string()
-  .max(10, { message: '文字数は10文字以内にしてほしいな' });
+  .max(20, { message: '文字数は20文字以内にしてほしいな' });
 
 export type CategoryNameProps = {
   value: string;
