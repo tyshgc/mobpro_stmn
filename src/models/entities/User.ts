@@ -1,9 +1,25 @@
 import Entity from '../shared/Entity'
 import UserName, { UserNameProps } from '../values/UserName'
+import UserAge, { UserAgeProps } from '../values/UserAge'
 
+type UserProps = {
+  id?: number
+  name: UserName
+  age?: UserAge
+}
+
+type FactoryProps = {
+  id?: number
+  name: UserNameProps
+  age?: UserAgeProps
+}
 export default class User extends Entity<UserProps> {
   public getName() {
     return this.props.name
+  }
+
+  public getUserAge() {
+    return this.props.age
   }
 
   public changeFirstName(newName: string) {
@@ -32,18 +48,11 @@ export default class User extends Entity<UserProps> {
     const name = UserName.factory({
       value: props.name.value
     })
-    return new User({ name })
+
+    const age = UserAge.factory({
+      value: props.age?.value || 1
+    })
+
+    return new User({ name, age: props.age ? age : undefined  })
   }
 };
-
-
-type UserProps = {
-  id?: number
-  name: UserName
-  age?: number
-}
-
-type FactoryProps = {
-  id: number
-  name: UserNameProps
-}
