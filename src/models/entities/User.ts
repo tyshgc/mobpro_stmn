@@ -45,14 +45,13 @@ export default class User extends Entity<UserProps> {
   }
 
   public static factory(props: FactoryProps) {
-    const name = UserName.factory({
-      value: props.name.value
-    })
-
-    const age = UserAge.factory({
-      value: props.age?.value || 1
-    })
-
-    return new User({ name, age: props.age ? age : undefined  })
+    const name = props.name.value
+    const age = props.age?.value
+    
+    return new User(
+      { name: UserName.factory({ value: name }),
+        age: age ? UserAge.factory({ value: age }) : undefined
+      }
+    )
   }
 };
