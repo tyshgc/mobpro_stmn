@@ -7,8 +7,7 @@ export default class UserRepository extends Repository<User> {
     const userFetchData = await fetchUser()
     const userEntity = createUser(userFetchData)
 
-    new UserRepository(userEntity)
-    return userEntity
+    return new UserRepository(userEntity)
   }
 
   public getUser() {

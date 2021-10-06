@@ -8,9 +8,12 @@ export default class TasksRepository extends Repository<TaskEntities> {
     const tasksFetchData = (await fetchTasks()) as TaskResponce[]
     const taskEntities = createTasks(tasksFetchData)
 
-    new TasksRepository(taskEntities)
+    return new TasksRepository(taskEntities)
+  }
 
-    return taskEntities
+  // 現在のタスクを取得
+  public getTasks() {
+    return this.entities
   }
 
   // タスクを追加
