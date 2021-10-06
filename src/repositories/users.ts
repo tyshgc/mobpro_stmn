@@ -1,6 +1,6 @@
-import Repository from './shared/Repository'
-import User from '../models/entities/User'
-import { fetchUser, ResponseUserType } from '../gateways'
+import Repository from "./shared/Repository"
+import User from "../models/entities/User"
+import { fetchUser, ResponseUserType } from "../gateways"
 
 export default class UserRepository extends Repository<User> {
   public static async initialize() {
@@ -22,11 +22,13 @@ function createUser(user: ResponseUserType) {
     name: {
       value: {
         firstName: user.firstName,
-        lastName: user.lastName
-      }
+        lastName: user.lastName,
+      },
     },
-    age: user.age ? {
-      value: user.age
-    } : undefined
+    age: user.age
+      ? {
+          value: user.age,
+        }
+      : undefined,
   })
 }

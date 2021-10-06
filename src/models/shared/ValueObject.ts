@@ -1,5 +1,5 @@
-import { shallowEqual } from 'shallow-equal-object';
-import Result, { ResultConstructorProps } from './Result';
+import { shallowEqual } from "shallow-equal-object"
+import Result, { ResultConstructorProps } from "./Result"
 
 /**
  * Value Object abstract Class
@@ -11,28 +11,28 @@ import Result, { ResultConstructorProps } from './Result';
  * - バリデーションはEntityを通して行う（集約→Entity→ValueObject）
  */
 export default abstract class ValueObject<T> {
-  protected readonly props: T;
+  protected readonly props: T
 
   constructor(props: T) {
-    this.props = Object.freeze(props);
+    this.props = Object.freeze(props)
   }
 
   public equals(valuObject?: ValueObject<T>): boolean {
     if (valuObject === null || valuObject === undefined) {
-      return false;
+      return false
     }
     if (valuObject.props === undefined) {
-      return false;
+      return false
     }
-    return shallowEqual(this.props, valuObject.props);
+    return shallowEqual(this.props, valuObject.props)
   }
 
   protected getResult<I, E>(props: Props<I, E>) {
-    return Result.create(props);
+    return Result.create(props)
   }
 }
 
 type Props<I, E> = Pick<
   ResultConstructorProps<I, E>,
-  'status' | 'contents' | 'failer'
->;
+  "status" | "contents" | "failer"
+>

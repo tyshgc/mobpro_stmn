@@ -1,6 +1,6 @@
-import Entity from '../shared/Entity'
-import UserName, { UserNameProps } from '../values/UserName'
-import UserAge, { UserAgeProps } from '../values/UserAge'
+import Entity from "../shared/Entity"
+import UserName, { UserNameProps } from "../values/UserName"
+import UserAge, { UserAgeProps } from "../values/UserAge"
 
 type UserProps = {
   id?: number
@@ -26,8 +26,8 @@ export default class User extends Entity<UserProps> {
     const name = UserName.factory({
       value: {
         firstName: newName,
-        lastName: this.props.name.lastName()
-      }
+        lastName: this.props.name.lastName(),
+      },
     })
 
     this.props = { ...this.props, name }
@@ -37,8 +37,8 @@ export default class User extends Entity<UserProps> {
     const name = UserName.factory({
       value: {
         firstName: this.props.name.firstName(),
-        lastName: newName
-      }
+        lastName: newName,
+      },
     })
 
     this.props = { ...this.props, name }
@@ -47,11 +47,10 @@ export default class User extends Entity<UserProps> {
   public static factory(props: FactoryProps) {
     const name = props.name.value
     const age = props.age?.value
-    
-    return new User(
-      { name: UserName.factory({ value: name }),
-        age: age ? UserAge.factory({ value: age }) : undefined
-      }
-    )
+
+    return new User({
+      name: UserName.factory({ value: name }),
+      age: age ? UserAge.factory({ value: age }) : undefined,
+    })
   }
-};
+}

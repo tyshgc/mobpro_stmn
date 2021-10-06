@@ -1,15 +1,15 @@
-import { handleActions } from 'redux-actions';
-import { RootState } from './state';
-import { TodoActions } from '../actions/todos';
-import { TodoModel } from '../models';
+import { handleActions } from "redux-actions"
+import { RootState } from "./state"
+import { TodoActions } from "../actions/todos"
+import { TodoModel } from "../models"
 
 const initialState: RootState.TodoState = [
   {
     id: 1,
-    text: 'Use Redux',
+    text: "Use Redux",
     completed: false,
   },
-];
+]
 
 export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
   {
@@ -22,24 +22,24 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
             text: action.payload.text,
           },
           ...state,
-        ];
+        ]
       }
-      return state;
+      return state
     },
 
     [TodoActions.Type.DELETE_TODO]: (state, action) => {
-      return state.filter((todo) => todo.id !== (action.payload as any));
+      return state.filter((todo) => todo.id !== (action.payload as any))
     },
 
     [TodoActions.Type.EDIT_TODO]: (state, action) => {
       return state.map((todo) => {
         if (!todo || !action || !action.payload) {
-          return todo;
+          return todo
         }
         return (todo.id || 0) === action.payload.id
           ? { ...todo, text: action.payload.text }
-          : todo;
-      });
+          : todo
+      })
     },
 
     [TodoActions.Type.COMPLETE_TODO]: (state, action) => {
@@ -47,16 +47,16 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
         todo.id === (action.payload as any)
           ? { ...todo, completed: !todo.completed }
           : todo
-      );
+      )
     },
 
     [TodoActions.Type.COMPLETE_ALL]: (state) => {
-      return state.map((todo) => ({ ...todo, completed: true }));
+      return state.map((todo) => ({ ...todo, completed: true }))
     },
 
     [TodoActions.Type.CLEAR_COMPLETED]: (state) => {
-      return state.filter((todo) => todo.completed === false);
+      return state.filter((todo) => todo.completed === false)
     },
   },
   initialState
-);
+)

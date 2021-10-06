@@ -1,10 +1,10 @@
-import { TodoModel } from '../models/TodoModel';
+import { TodoModel } from "../models/TodoModel"
 
 export interface RootState {
-  todos: RootState.TodoState;
-  router?: any;
+  todos: RootState.TodoState
+  router?: any
 }
 
 export namespace RootState {
-  export type TodoState = TodoModel[];
+  export type TodoState = TodoModel[]
 }

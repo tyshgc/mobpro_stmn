@@ -1,6 +1,6 @@
-import ValueObject from '../shared/ValueObject'
-import { ResultConstructorProps } from '../shared/Result'
-import * as zod from 'zod'
+import ValueObject from "../shared/ValueObject"
+import { ResultConstructorProps } from "../shared/Result"
+import * as zod from "zod"
 
 export default class UserAge extends ValueObject<UserAgeProps> {
   public value() {
@@ -15,19 +15,19 @@ export default class UserAge extends ValueObject<UserAgeProps> {
         return {
           path: issue.path[0],
           code: issue.code,
-          title: issue.message
+          title: issue.message,
         }
       })
 
       const params: ResultConstructorProps<UserAge, null> = {
-        status: 'FAILURE',
-        contents
+        status: "FAILURE",
+        contents,
       }
 
       return this.getResult<UserAge, null>(params)
     }
   }
-  
+
   public static factory(props: UserAgeProps) {
     return new UserAge(props)
   }
@@ -37,4 +37,7 @@ export type UserAgeProps = {
   value: number
 }
 
-const valueSchema = zod.number().min(1, { message: '１歳以上で入力してください。' }).max(3, { message: "正しい年齢を入力してください。" })
+const valueSchema = zod
+  .number()
+  .min(1, { message: "１歳以上で入力してください。" })
+  .max(3, { message: "正しい年齢を入力してください。" })

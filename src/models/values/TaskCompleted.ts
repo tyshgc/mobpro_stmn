@@ -1,42 +1,42 @@
-import ValueObject from '../shared/ValueObject';
-import { ResultConstructorProps } from '../shared/Result';
-import * as zod from 'zod';
+import ValueObject from "../shared/ValueObject"
+import { ResultConstructorProps } from "../shared/Result"
+import * as zod from "zod"
 
 export default class TaskCompleted extends ValueObject<TaskCompletedProps> {
   public value() {
-    return this.props.value;
+    return this.props.value
   }
 
   public validation() {
-    const { value } = this.props;
-    const result = valueSchema.safeParse(value);
+    const { value } = this.props
+    const result = valueSchema.safeParse(value)
 
     if (!result.success) {
       const contents = result.error.issues.map((issue) => {
         return {
           path: issue.path[0],
           code: issue.code,
-          title: '',
+          title: "",
           detail: issue.message,
-        };
-      });
+        }
+      })
 
       const params: ResultConstructorProps<TaskCompleted, null> = {
-        status: 'FAILURE',
+        status: "FAILURE",
         contents,
-      };
+      }
 
-      return this.getResult<TaskCompleted, null>(params);
+      return this.getResult<TaskCompleted, null>(params)
     }
   }
 
   public static factory(props: TaskCompletedProps) {
-    return new TaskCompleted(props);
+    return new TaskCompleted(props)
   }
 }
 
-const valueSchema = zod.boolean();
+const valueSchema = zod.boolean()
 
 export type TaskCompletedProps = {
-  value: boolean;
-};
+  value: boolean
+}
