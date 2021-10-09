@@ -1,5 +1,5 @@
 import ValueObject from "../shared/ValueObject"
-import { ResultConstructorProps } from "../shared/Result"
+import Result, { ResultConstructorProps } from "../shared/Result"
 import * as zod from "zod"
 
 export default class TaskName extends ValueObject<TaskNameProps> {
@@ -7,7 +7,7 @@ export default class TaskName extends ValueObject<TaskNameProps> {
     return this.props.value
   }
 
-  public validation() {
+  public validation(): Result<unknown, null> | undefined {
     const { value } = this.props
     const result = valueSchema.safeParse(value)
 
@@ -26,12 +26,14 @@ export default class TaskName extends ValueObject<TaskNameProps> {
         contents,
       }
 
-      return this.getResult<TaskName, null>(params)
+      return this.getResult(params)
     }
   }
 
-  public static factory(props: TaskNameProps) {
-    return new TaskName(props)
+  public static factory(value: TaskNameProps["value"]) {
+    return new TaskName({
+      value,
+    })
   }
 }
 
