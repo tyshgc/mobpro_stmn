@@ -30,14 +30,17 @@ export default class TaskDetail extends ValueObject<TaskDetailProps> {
     }
   }
 
-  public static factory(props: TaskDetailProps) {
-    return new TaskDetail(props)
+  public static factory(value: TaskDetailProps["value"]) {
+    return new TaskDetail({
+      value,
+    })
   }
 }
 
 const valueSchema = zod
   .string()
   .max(200, { message: "文字数は200文字以内にしてほしいな" })
+  .optional()
 
 export type TaskDetailProps = {
   value: string
