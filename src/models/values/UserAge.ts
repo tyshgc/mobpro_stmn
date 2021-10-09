@@ -1,5 +1,5 @@
 import ValueObject from "../shared/ValueObject"
-import { ResultConstructorProps } from "../shared/Result"
+import { ResultConstructorProps } from "../../utils/Result"
 import * as zod from "zod"
 
 export default class UserAge extends ValueObject<UserAgeProps> {

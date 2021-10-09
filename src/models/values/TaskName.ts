@@ -1,5 +1,5 @@
 import ValueObject from "../shared/ValueObject"
-import Result, { ResultConstructorProps } from "../shared/Result"
+import Result, { ResultConstructorProps } from "../../utils/Result"
 import * as zod from "zod"
 
 export default class TaskName extends ValueObject<TaskNameProps> {

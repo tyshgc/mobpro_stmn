@@ -1,5 +1,5 @@
 import { shallowEqual } from "shallow-equal-object"
-import Result, { ResultConstructorProps } from "./Result"
+import Result, { ResultConstructorProps } from "../../utils/Result"
 
 /**
  * Value Object abstract Class

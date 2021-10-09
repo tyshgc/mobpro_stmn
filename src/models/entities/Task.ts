@@ -1,7 +1,7 @@
 import Entity from "../shared/Entity"
 import TaskName, { TaskNameProps } from "../values/TaskName"
 import TaskDetail, { TaskDetailProps } from "../values/TaskDetail"
-import Result from "../shared/Result"
+import Result from "../../utils/Result"
 import EntityValidationError from "../shared/EntityValidationError"
 
 /**
