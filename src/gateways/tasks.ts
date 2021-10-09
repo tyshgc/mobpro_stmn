@@ -1,4 +1,4 @@
-const mockTasks = [
+const mockTasks: TaskResponce[] = [
   {
     id: 1,
     priority: 1,
@@ -15,39 +15,48 @@ const mockTasks = [
         label: "生活",
       },
     ],
-    update_at: "2021-09-30 00:00:00",
-    create_at: "2021-09-30 00:00:00",
+    updated_at: "2021-09-30 00:00:00",
+    created_at: "2021-09-30 00:00:00",
   },
 ]
 
-export const fetchTasks = () => {
+export const fetchTasks = (): Promise<TaskResponce[]> => {
   return new Promise((resolve) => {
     return resolve(mockTasks)
   })
 }
 
-export const postTask = (task: TaskApiProps) => {
+export const postTask = (task: TaskApiProps): Promise<TaskResponce[]> => {
+  const createNewTask = {
+    ...task,
+    id: 2,
+    updated_at: "2021-09-30 00:00:00",
+    created_at: "2021-09-30 00:00:00",
+  }
   return new Promise((resolve) => {
-    return resolve({ ...mockTasks, task })
+    return resolve([...mockTasks, createNewTask])
   })
 }
 
-type TaskApiProps = {
+export type TaskApiProps = {
   title: string
-  detail: string
+  detail?: string
   priority?: number
   status?: TaskStatus
 }
 
 export type TaskResponce = {
   id: number
-  priority: number
   title: string
-  detail: string
-  categories: {
+  detail?: string
+  priority?: number
+  status?: TaskStatus
+  categories?: {
     id: number
     label: string
-  }
+  }[]
+  updated_at: string
+  created_at: string
 }
 
 export type TaskStatus = "open" | "close"
