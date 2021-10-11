@@ -2,9 +2,10 @@ import { Store, createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { rootReducer } from "./reducers"
 import { RootState } from "./states/root"
+import { initialTodoState } from "./states/todo"
 import { logger } from "./middlewares"
 
-function configureStore(initialState?: RootState): Store<RootState> {
+function configureStore(): Store<RootState> {
   let middleware = applyMiddleware(logger)
 
   if (process.env.NODE_ENV !== "production") {
@@ -13,7 +14,9 @@ function configureStore(initialState?: RootState): Store<RootState> {
 
   const store = createStore(
     rootReducer,
-    initialState,
+    {
+      todo: initialTodoState,
+    },
     middleware
   ) as Store<RootState>
 
