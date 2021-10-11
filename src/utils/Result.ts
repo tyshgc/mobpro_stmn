@@ -53,9 +53,7 @@ export default class Result<T, F> {
     return this.$status === "FAILURE" ? this.$failer : undefined
   }
 
-  public static create<T, F>(
-    params: ResultConstructorProps<T, F>
-  ): Result<T, F> {
+  public static create<T, F>(params: ResultConstructorProps<T, F>) {
     return new Result(params)
   }
 }
