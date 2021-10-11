@@ -6,8 +6,7 @@ describe("addTask Test", () => {
     userAddTask(store, {
       name: "市役所へ行く",
       detail: "市役所で住民票をゲットする",
-    })
-    done()
+    }).then(() => done())
   })
 })
 
