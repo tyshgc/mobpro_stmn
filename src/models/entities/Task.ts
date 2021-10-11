@@ -37,10 +37,10 @@ export default class Task extends Entity<TaskProps> {
     const detail = this.props.detail?.validation()
 
     if (name?.status === "FAILURE" || detail?.status === "FAILURE") {
-      throw new EntityValidationError<ValidationsType>(
-        "タスクの作成に失敗しました",
-        { name, detail }
-      )
+      throw new EntityValidationError("タスクの作成に失敗しました", {
+        name,
+        detail,
+      })
     }
   }
 
@@ -66,5 +66,5 @@ export type FactoryProps = {
   detail?: TaskDetailProps["value"]
 }
 export type ValidationsType =
-  | { name?: Result<unknown, null>; detail?: Result<unknown, null> }
+  | { name?: Result<TaskName, null>; detail?: Result<TaskDetail, null> }
   | undefined

@@ -7,7 +7,7 @@ export default class TaskName extends ValueObject<TaskNameProps> {
     return this.props.value
   }
 
-  public validation(): Result<unknown, null> | undefined {
+  public validation() {
     const { value } = this.props
     const result = valueSchema.safeParse(value)
 
