@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { useSelector } from "react-redux"
 import { userAddTask } from "../useCases/todo"
-import { RootState } from "../redux/reducers"
+import { RootState } from "../redux/states"
 import store from "../redux"
 
 /**
