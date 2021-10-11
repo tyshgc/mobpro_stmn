@@ -38,12 +38,10 @@ export const postTask = (task: TaskApiProps): Promise<TaskResponce[]> => {
   })
 }
 
-export type TaskApiProps = {
-  title: string
-  detail?: string
-  priority?: number
-  status?: TaskStatus
-}
+export type TaskApiProps = Pick<
+  TaskResponce,
+  "title" | "detail" | "priority" | "status"
+>
 
 export type TaskResponce = {
   id: number
